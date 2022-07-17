@@ -1,0 +1,30 @@
+@media (max-width: 1550px) {
+    
+    .App{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        height: fit-content;
+    }
+    .image-container  {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 60vw;
+    }
+    .image-container img {
+        width: 85vw;
+    }
+
+    .explain-container{
+        font-size: 1.15rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 85vw;
+        margin:45px;
+    }
+
+}
