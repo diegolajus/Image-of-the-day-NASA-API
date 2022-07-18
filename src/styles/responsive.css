@@ -33,7 +33,6 @@
         position: absolute;
         z-index: 0;
     }
-
 }
 
 @media (max-width: 870px) {
@@ -58,7 +57,12 @@
 
 }
 
+
 @media (max-width: 380px) {
+
+    .image-container img {
+        width:90vw;
+    }
 
     .videos-container{
         display: flex;
