@@ -131,13 +131,14 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <div className='App'>
 
       <div className='explain-container'>
         <Title title = {this.state.chosenDay.title}/> 
         <Explanation explain = {this.state.chosenDay.explanation}/>  
-        <Accordion style={{border:'1px solid green'}}>
+        <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header>Related Videos</Accordion.Header>
               <Accordion.Body>
@@ -150,7 +151,7 @@ class App extends Component {
        <div className='image-container'>
         <input  className='input-date bg-dark' value={this.state.chosenDay.date} type="date" max={formatDate(currentDate)} onChange={this.changeDate.bind(this)} />
         
-         <div style={{textAlign:'center', position:'relative'}}>
+         <div className='img-badge' >
             <Image img = {this.state.chosenDay.url}/>
             {/* <Spinner id="spinner" animation="border" /> */}
             <Badge className='badge' bg="secondary"><a className='full-screen-link' href={this.state.chosenDay.url} rel="noreferrer" target='_blank'>Full Screen</a></Badge>

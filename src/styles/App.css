@@ -11,7 +11,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 35%;
+    width: 40%;
     margin:45px;
 }
 .image-container  {
@@ -52,7 +52,7 @@
     filter: invert(1);
 }
 .image-container img {
-    height: 80%;
+    height: 80vh;
 }
 /* VIDEOS CONTAINER */
 .videos-container{
@@ -60,11 +60,7 @@
     flex-direction: row;
 }
 .videos-container iframe{
-    margin: 8px;
-}
-
-.accordion{
-    margin: 10px;
+    margin: 3px;
 }
 
 .full-screen-link {

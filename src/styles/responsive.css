@@ -47,26 +47,22 @@
         width: 85vw;
         margin:45px;
     }
-
-    .image-container img {
-        height:35vh;
-    }
-
 }
 
 @media (max-width: 870px) {
 
-    .image-container img {
-        height:35vh;
+    .videos-container{
+        display: flex;
+        flex-direction: column;
     }
 
 }
 
-
 @media (max-width: 380px) {
 
-    .image-container img {
-        height:20vh;
+    .videos-container{
+        display: flex;
+        flex-direction: column;
     }
 
 }
