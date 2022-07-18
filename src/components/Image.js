@@ -1,5 +1,4 @@
 import React from 'react'
-import '../styles/Image.css'
 
 export default function Image({img}) {
   return (

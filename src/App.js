@@ -1,21 +1,27 @@
 
 import React, { Component } from 'react';
+import Badge from 'react-bootstrap/Badge';
 import Accordion from 'react-bootstrap/Accordion';
 import './styles/App.css'
 import './styles/responsive.css'
 // COMPONENTS
-// import Navbar from './components/NavBar'
 import Videos from './components/Videos'
 import Explanation from './components/Explanation'
 import Image from './components/Image'
 import Title from './components/Title'
 import youtube from './api/youtube';
+
 // VARIABLES
 const NASA_API = process.env.REACT_APP_NASA_API
 const currentDate = (formatDate(new Date()).split("-"))
 let yesterday = new Date(new Date().setDate(new Date().getDate()-1));
 
 var [currentYear, currentMonth, currentDay] = [currentDate[0],currentDate[1],Number(currentDate[2])] 
+var [yDay,yMonth, yYear] = [
+  yesterday.toLocaleDateString().split("/")[0],
+  yesterday.toLocaleDateString().split("/")[1],
+  yesterday.toLocaleDateString().split("/")[2]
+] 
 
 // FUNCTIONS
 function formatDate(date) {
@@ -48,13 +54,16 @@ class App extends Component {
     .then(res => res.json())
     .then((result) => {
       if (result.code === 400 || result.code === 404)  {
-        this.setState({chosenDay: {
-          date : formatDate(yesterday),
-          url : result.url,
-          title : result.title,
-          explanation : result.explanation,
-        }})
-        console.log('YESTERDAY',this.state)
+        fetch(`https://api.nasa.gov/planetary/apod?date=${yYear}-${yMonth}-${yDay}&api_key=${NASA_API}`)
+        .then(res => res.json())
+        .then((result) => {
+          this.setState({chosenDay: {
+            date : formatDate(yesterday),
+            url : result.url,
+            title : result.title,
+            explanation : result.explanation,
+          }})
+        })
       }else{
         this.setState({chosenDay: {
           date : result.date,
@@ -62,7 +71,6 @@ class App extends Component {
           title : result.title,
           explanation : result.explanation,
         }})
-        console.log('TODAY',this.state)
       }
       // FETCHING VIDEO ACORDING TO THE TITLE OF THE IMAGE OF THE DAY
       const fetchVideo = async () => {
@@ -97,7 +105,6 @@ class App extends Component {
           title : result.title,
           explanation : result.explanation,
       }})
-      
       const fetchNewVideo = async () => {
       const YT_API = process.env.REACT_APP_YOUTUBE_API
         const response =  await youtube.get('search', {
@@ -108,7 +115,6 @@ class App extends Component {
             q: result.title //USING THE NEW TITLE IMAGE FETHCED AS A TERM FOR VIDEOS LIST
           }
         });
-  
         var joinedVideos = []
         Object.values(response.data.items).forEach(i => {
           joinedVideos.push(i.id.videoId)
@@ -124,19 +130,17 @@ class App extends Component {
       <div className='App'>
 
       <div className='explain-container'>
-        <Title title = {this.state.chosenDay.title}/>
-        <Explanation explain = {this.state.chosenDay.explanation}/>        
-        {/* <Navbar videos={this.state.videoList}/> */}
-        <div className="accordion">
-          <Accordion style={{border:'1px solid green'}}>
+        <Title title = {this.state.chosenDay.title}/> 
+        <Explanation explain = {this.state.chosenDay.explanation}/>  
+        <Badge bg="secondary"><a className='full-screen-link' href={this.state.chosenDay.url} target='_blank'>Full Screen</a></Badge>
+        <Accordion style={{border:'1px solid green'}}>
           <Accordion.Item eventKey="0">
             <Accordion.Header>Related Videos</Accordion.Header>
               <Accordion.Body>
                 <Videos videos={this.state.videoList}/>
               </Accordion.Body>
             </Accordion.Item>
-          </Accordion>
-        </div>
+          </Accordion>      
       </div>
 
        <div className='image-container'>

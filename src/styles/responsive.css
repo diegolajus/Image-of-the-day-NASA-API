@@ -14,7 +14,7 @@
         width: 60vw;
     }
     .image-container img {
-        width: 85vw;
+        height:45vh;
     }
 
     .explain-container{
@@ -25,6 +25,48 @@
         align-items: center;
         width: 85vw;
         margin:45px;
+    }
+
+    .full-view-btn {
+        bottom: 25px;
+        right: 25%;
+        position: absolute;
+        z-index: 0;
+    }
+
+}
+
+@media (max-width: 870px) {
+    
+    .explain-container{
+        font-size: 1.15rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 85vw;
+        margin:45px;
+    }
+
+    .image-container img {
+        height:35vh;
+    }
+
+}
+
+@media (max-width: 870px) {
+
+    .image-container img {
+        height:35vh;
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .image-container img {
+        height:20vh;
     }
 
 }
