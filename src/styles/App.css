@@ -75,3 +75,9 @@
    color: white;
 }
 
+.badge{
+    position: absolute;
+    bottom:2%;
+    left: 2%;
+
+}

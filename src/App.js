@@ -10,6 +10,8 @@ import Explanation from './components/Explanation'
 import Image from './components/Image'
 import Title from './components/Title'
 import youtube from './api/youtube';
+// import Spinner from 'react-bootstrap/Spinner';
+
 
 // VARIABLES
 const NASA_API = process.env.REACT_APP_NASA_API
@@ -47,12 +49,14 @@ class App extends Component {
       title:''
       },
       videoList:[],
+      isLoading: 'none'
     } 
   }
   componentDidMount(){
     fetch(`https://api.nasa.gov/planetary/apod?date=${currentYear}-${currentMonth}-${currentDay}&api_key=${NASA_API}`)
     .then(res => res.json())
     .then((result) => {
+      this.setState({ isLoading: true })
       if (result.code === 400 || result.code === 404)  {
         fetch(`https://api.nasa.gov/planetary/apod?date=${yYear}-${yMonth}-${yDay}&api_key=${NASA_API}`)
         .then(res => res.json())
@@ -63,6 +67,7 @@ class App extends Component {
             title : result.title,
             explanation : result.explanation,
           }})
+        this.setState({ isLoading: false })
         })
       }else{
         this.setState({chosenDay: {
@@ -132,7 +137,6 @@ class App extends Component {
       <div className='explain-container'>
         <Title title = {this.state.chosenDay.title}/> 
         <Explanation explain = {this.state.chosenDay.explanation}/>  
-        <Badge bg="secondary"><a className='full-screen-link' href={this.state.chosenDay.url} target='_blank'>Full Screen</a></Badge>
         <Accordion style={{border:'1px solid green'}}>
           <Accordion.Item eventKey="0">
             <Accordion.Header>Related Videos</Accordion.Header>
@@ -145,7 +149,12 @@ class App extends Component {
 
        <div className='image-container'>
         <input  className='input-date bg-dark' value={this.state.chosenDay.date} type="date" max={formatDate(currentDate)} onChange={this.changeDate.bind(this)} />
-         <Image img = {this.state.chosenDay.url}/>
+        
+         <div style={{textAlign:'center', position:'relative'}}>
+            <Image img = {this.state.chosenDay.url}/>
+            {/* <Spinner id="spinner" animation="border" /> */}
+            <Badge className='badge' bg="secondary"><a className='full-screen-link' href={this.state.chosenDay.url} rel="noreferrer" target='_blank'>Full Screen</a></Badge>
+         </div>
        </div>
 
       </div>
