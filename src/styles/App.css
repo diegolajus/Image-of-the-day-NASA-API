@@ -24,6 +24,9 @@
 /* EXPLAIN CONTAINER */
 .explain-container  {
     font-size: 1.4rem;
+    background-color: rgba(0, 0, 0, 0.503);
+    /* border: 1px solid white; */
+    padding: 9px;
 }
 .explain-container p{
     color: rgb(255, 255, 255);
@@ -38,7 +41,7 @@
 /* IMAGE CONTAINER */
 .input-date{
     font-size: 1.5rem;
-    border: transparent;
+    border: 1px solid white;
     color: white;
     border-radius:8px ;
     text-align: center;
