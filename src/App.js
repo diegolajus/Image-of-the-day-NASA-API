@@ -136,7 +136,10 @@ class App extends Component {
     return (
       <div className='App'>
       <div className='explain-container'>
-        <Title title = {this.state.chosenDay.title}/> 
+        <div className='title-container'>
+          <Title title = {this.state.chosenDay.title}/> 
+            <input  className='input-date bg-dark' value={this.state.chosenDay.date} type="date" max={formatDate(currentDate)} onChange={this.changeDate.bind(this)} />
+        </div>
         <Explanation explain = {this.state.chosenDay.explanation}/>  
         <Accordion>
           <Accordion.Item eventKey="0">
@@ -148,7 +151,6 @@ class App extends Component {
           </Accordion>      
       </div>
        <div className='image-container'>
-        <input  className='input-date bg-dark' value={this.state.chosenDay.date} type="date" max={formatDate(currentDate)} onChange={this.changeDate.bind(this)} />
          <div className='img-badge' >
             <Image img = {this.state.chosenDay.url}/>
             {/* <Spinner id="spinner" animation="border" /> */}

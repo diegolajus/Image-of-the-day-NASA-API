@@ -33,10 +33,13 @@
         position: absolute;
         z-index: 0;
     }
+
+    .image-container img {
+        margin-top: 50px;
+    }
 }
 
 @media (max-width: 870px) {
-    
     .explain-container{
         font-size: 1.15rem;
         display: flex;
@@ -49,12 +52,13 @@
 }
 
 @media (max-width: 870px) {
-
     .videos-container{
         display: flex;
         flex-direction: column;
     }
-
+    .image-container img {
+        margin-top: 50px;
+    }
 }
 
 
@@ -62,6 +66,7 @@
 
     .image-container img {
         width:90vw;
+        margin-top: 500px;
     }
 
     .videos-container{

@@ -11,22 +11,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 40%;
-    margin:45px;
+    width: 45%;
+    margin:40px;
 }
 .image-container  {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 /* EXPLAIN CONTAINER */
 .explain-container  {
     font-size: 1.4rem;
     background-color: rgba(0, 0, 0, 0.503);
     /* border: 1px solid white; */
-    padding: 9px;
+    padding: 10px 25px 10px 25px;
+    border-radius: 18px;
 }
 .explain-container p{
     color: rgb(255, 255, 255);
@@ -35,18 +35,18 @@
 .explain-container h1{
     color: rgb(255, 255, 255);
     text-align: center;
-    font-size: 1.9rem;
+    font-size: 2.5rem;
     font-weight: bolder;
 }
 /* IMAGE CONTAINER */
 .input-date{
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     border: 1px solid white;
     color: white;
     border-radius:8px ;
     text-align: center;
     height: 40px;
-    margin: 10px;
+    margin: 0 0 0 20px;
     padding: 8px;
 }
 .input-date p{
@@ -56,7 +56,9 @@
     filter: invert(1);
 }
 .image-container img {
-    height: 80vh;
+    /* height: 80vh; */
+    max-width: 900px;
+    max-height: 800px;
 }
 /* VIDEOS CONTAINER */
 .videos-container{
@@ -68,16 +70,28 @@
 }
 
 .full-screen-link {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
 }
 .full-screen-link:hover{
    color: white;
 }
 
+.img-badge{
+    position: relative;
+
+}
 .badge{
     position: absolute;
     bottom:2%;
     left: 2%;
+}
 
+.title-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
 }

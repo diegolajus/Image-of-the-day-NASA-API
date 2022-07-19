@@ -29,7 +29,7 @@
   },
   "particles": {
     "color": {
-      "value": "#0000"
+      "value": ["#ffffff", "#e5e5e5", "#7f7f7f", "#b2b2b2", "#4c4c4c"]
     },
     "links": {
       "color": "#ffffff",
@@ -56,7 +56,7 @@
         "enable": true,
         "value_area": 800
       },
-      "value": 40
+      "value": 30
     },
     "opacity": {
       "value": 0.5
