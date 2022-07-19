@@ -5,6 +5,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import './styles/App.css'
 import './styles/responsive.css'
 // COMPONENTS
+import ParticlesBg from './components/ParticlesBg'
 import Videos from './components/Videos'
 import Explanation from './components/Explanation'
 import Image from './components/Image'
@@ -154,7 +155,7 @@ class App extends Component {
             <Badge className='badge' bg="secondary"><a className='full-screen-link' href={this.state.chosenDay.url} rel="noreferrer" target='_blank'>Full Screen</a></Badge>
          </div>
        </div>
-
+       <div style={{zIndex:'-1', position:'absolute'}}><ParticlesBg/></div>
       </div>
     );
   }

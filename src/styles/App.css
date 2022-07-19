@@ -26,13 +26,14 @@
     font-size: 1.4rem;
 }
 .explain-container p{
-    color: rgb(41, 41, 41);
+    color: rgb(255, 255, 255);
     text-align: justify;
 }
 .explain-container h1{
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     text-align: center;
     font-size: 1.9rem;
+    font-weight: bolder;
 }
 /* IMAGE CONTAINER */
 .input-date{
