@@ -3,7 +3,8 @@ import React from 'react'
 export default function Image({img}) {
   return (
     <div style={{
-      position:'relative'
+      position:'relative',
+      color:'transparent'
     }}>
       <img src={img} alt={img} />
       {/* <button

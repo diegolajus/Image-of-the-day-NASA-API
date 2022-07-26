@@ -50,14 +50,17 @@ class App extends Component {
       title:''
       },
       videoList:[],
-      isLoading: 'none'
+      isLoading: 'none',
+      errorMsg:''
     } 
   }
   componentDidMount(){
     fetch(`https://api.nasa.gov/planetary/apod?date=${currentYear}-${currentMonth}-${currentDay}&api_key=${NASA_API}`)
     .then(res => res.json())
     .then((result) => {
-      this.setState({ isLoading: true })
+      if(result.media_type === 'video'){
+        this.setState({errorMsg:`I can\'t handle this Picture 😕. Go Here ${this.state.chosenDay.url}`})
+      }
       if (result.code === 400 || result.code === 404)  {
         fetch(`https://api.nasa.gov/planetary/apod?date=${yYear}-${yMonth}-${yDay}&api_key=${NASA_API}`)
         .then(res => res.json())
@@ -68,7 +71,6 @@ class App extends Component {
             title : result.title,
             explanation : result.explanation,
           }})
-        this.setState({ isLoading: false })
         })
       }else{
         this.setState({chosenDay: {
@@ -105,6 +107,9 @@ class App extends Component {
     fetch(`https://api.nasa.gov/planetary/apod?date=${yyyy}-${MM}-${dd}&api_key=80jKuhLAEEEY9WmHGSIbFBLUYJ1QQenbCXpJOh0A`)
       .then(res => res.json())
       .then((result) => {
+        if(result.media_type === 'video'){
+          this.setState({errorMsg:`I can\'t handle this Picture 😕. Go Here ${this.state.chosenDay.url}`})
+        }
         this.setState({chosenDay: {
           date : formatDate(chosenDate),
           url : result.url,
@@ -152,10 +157,11 @@ class App extends Component {
       </div>
        <div className='image-container'>
          <div className='img-badge' >
-            <Image img = {this.state.chosenDay.url}/>
+            <Image img = {this.state.chosenDay.url} alt=''/>
             {/* <Spinner id="spinner" animation="border" /> */}
             <Badge className='badge' bg="secondary"><a className='full-screen-link' href={this.state.chosenDay.url} rel="noreferrer" target='_blank'>Full Screen</a></Badge>
          </div>
+         <p id='chivato'>{this.state.errorMsg}</p>
        </div>
        <div style={{zIndex:'-1', position:'absolute'}}><ParticlesBg/></div>
       </div>
