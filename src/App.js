@@ -1,5 +1,4 @@
-
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import Badge from 'react-bootstrap/Badge';
 import Accordion from 'react-bootstrap/Accordion';
 import './styles/App.css'
@@ -11,7 +10,7 @@ import Explanation from './components/Explanation'
 import Image from './components/Image'
 import Title from './components/Title'
 import youtube from './api/youtube';
-// import Spinner from 'react-bootstrap/Spinner';
+import Alert from 'react-bootstrap/Alert';
 
 
 // VARIABLES
@@ -51,16 +50,17 @@ class App extends Component {
       },
       videoList:[],
       isLoading: 'none',
-      errorMsg:''
+      vidError:{
+        errorMsg:'',
+        errorLink:'',
+        errorSolve:'',
+      }
     } 
   }
   componentDidMount(){
     fetch(`https://api.nasa.gov/planetary/apod?date=${currentYear}-${currentMonth}-${currentDay}&api_key=${NASA_API}`)
     .then(res => res.json())
     .then((result) => {
-      if(result.media_type === 'video'){
-        this.setState({errorMsg:`I can\'t handle this Picture 😕. Go Here ${this.state.chosenDay.url}`})
-      }
       if (result.code === 400 || result.code === 404)  {
         fetch(`https://api.nasa.gov/planetary/apod?date=${yYear}-${yMonth}-${yDay}&api_key=${NASA_API}`)
         .then(res => res.json())
@@ -72,6 +72,13 @@ class App extends Component {
             explanation : result.explanation,
           }})
         })
+        if(result.media_type === 'video'){
+          this.setState({vidError: {
+            errorMsg:`The picture in ${formatDate(yesterday)}! 😕 is a Video`,
+            errorLink: result.url,
+            errorSolve:'Watch Here',
+          }})
+        }
       }else{
         this.setState({chosenDay: {
           date : result.date,
@@ -79,6 +86,13 @@ class App extends Component {
           title : result.title,
           explanation : result.explanation,
         }})
+        if(result.media_type === 'video'){
+          this.setState({vidError: {
+            errorMsg:`The picture in ${formatDate(yesterday)}! 😕 is a Video`,
+            errorLink: result.url,
+            errorSolve:'Watch Here',
+          }})
+        }
       }
       // FETCHING VIDEO ACORDING TO THE TITLE OF THE IMAGE OF THE DAY
       const fetchVideo = async () => {
@@ -107,15 +121,28 @@ class App extends Component {
     fetch(`https://api.nasa.gov/planetary/apod?date=${yyyy}-${MM}-${dd}&api_key=80jKuhLAEEEY9WmHGSIbFBLUYJ1QQenbCXpJOh0A`)
       .then(res => res.json())
       .then((result) => {
-        if(result.media_type === 'video'){
-          this.setState({errorMsg:`I can\'t handle this Picture 😕. Go Here ${this.state.chosenDay.url}`})
-        }
+
         this.setState({chosenDay: {
           date : formatDate(chosenDate),
           url : result.url,
           title : result.title,
           explanation : result.explanation,
-      }})
+      }})        
+      if(result.media_type === 'video'){
+          this.setState({vidError: {
+            errorMsg:`The Picture of the Day  in ${formatDate(chosenDate)} 😕 is a Video`,
+            errorLink: result.url,
+            errorSolve:'Watch Here',
+          },
+        })}
+        else {
+          this.setState({vidError: {
+            errorMsg:'',
+            errorLink: '',
+            errorSolve:'',
+          },
+        })}
+
       const fetchNewVideo = async () => {
       const YT_API = process.env.REACT_APP_YOUTUBE_API
         const response =  await youtube.get('search', {
@@ -157,11 +184,10 @@ class App extends Component {
       </div>
        <div className='image-container'>
          <div className='img-badge' >
-            <Image img = {this.state.chosenDay.url} alt=''/>
-            {/* <Spinner id="spinner" animation="border" /> */}
-            <Badge className='badge' bg="secondary"><a className='full-screen-link' href={this.state.chosenDay.url} rel="noreferrer" target='_blank'>Full Screen</a></Badge>
+            <Image  img = {this.state.chosenDay.url} alt=''/>
+            {/* <Badge className='badge' bg="secondary"><a className='full-screen-link' href={this.state.chosenDay.url} rel="noreferrer" target='_blank'>Full Screen</a></Badge> */}
          </div>
-         <p id='chivato'>{this.state.errorMsg}</p>
+         <p id='errorMsg'>{this.state.vidError.errorMsg}</p><a id='errorLink' href={this.state.vidError.errorLink}>{this.state.vidError.errorSolve}</a>
        </div>
        <div style={{zIndex:'-1', position:'absolute'}}><ParticlesBg/></div>
       </div>

@@ -96,7 +96,16 @@
     margin: 15px;
 }
 
-#chivato{
-    color: red;
+#errorMsg{
+    color: rgb(255, 255, 255);
     margin: 10px;
+}
+
+#errorLink{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    margin: 10px;
+}
+#errorLink:hover{
+    color: rgb(176, 176, 176);
 }
