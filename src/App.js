@@ -1,5 +1,5 @@
  import React, { Component } from 'react';
-import Badge from 'react-bootstrap/Badge';
+// import Badge from 'react-bootstrap/Badge';
 import Accordion from 'react-bootstrap/Accordion';
 import './styles/App.css'
 import './styles/responsive.css'
@@ -10,7 +10,6 @@ import Explanation from './components/Explanation'
 import Image from './components/Image'
 import Title from './components/Title'
 import youtube from './api/youtube';
-import Alert from 'react-bootstrap/Alert';
 
 
 // VARIABLES
@@ -74,7 +73,7 @@ class App extends Component {
         })
         if(result.media_type === 'video'){
           this.setState({vidError: {
-            errorMsg:`The picture in ${formatDate(yesterday)}! 😕 is a Video`,
+            errorMsg:`The Picture of the Day  in ${formatDate(yesterday)} is a Video 😕`,
             errorLink: result.url,
             errorSolve:'Watch Here',
           }})
@@ -88,7 +87,7 @@ class App extends Component {
         }})
         if(result.media_type === 'video'){
           this.setState({vidError: {
-            errorMsg:`The picture in ${formatDate(yesterday)}! 😕 is a Video`,
+            errorMsg:`The Picture of the Day  in ${formatDate(result.date)} is a Video 😕`,
             errorLink: result.url,
             errorSolve:'Watch Here',
           }})
@@ -130,7 +129,7 @@ class App extends Component {
       }})        
       if(result.media_type === 'video'){
           this.setState({vidError: {
-            errorMsg:`The Picture of the Day  in ${formatDate(chosenDate)} 😕 is a Video`,
+            errorMsg:`The Picture of the Day  in ${formatDate(chosenDate)} is a Video 😕`,
             errorLink: result.url,
             errorSolve:'Watch Here',
           },
