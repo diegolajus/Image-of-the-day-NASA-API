@@ -17,6 +17,17 @@ If you like topics related to cosmology or photography, be careful, it's highly 
 
 ![Alt text](/src/images/site.JPG)
 
+<!-- 
+[NASA API](#nasa-api)
+
+[YOUTUBE API](#youtube-api)
+
+[COMPONENTS](#components)
+
+## NASA API
+## YOUTUBE API
+## COMPONENTS -->
+
 <!-- [NASA API](#nasa-api)
 
 [Youtube API](#nasa-api)
